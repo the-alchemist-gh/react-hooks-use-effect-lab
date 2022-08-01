@@ -4,20 +4,17 @@ function Question({ question, onAnswered }) {
   const [timeRemaining, setTimeRemaining] = useState(10);
 
   useEffect(()=>{
-    const timerID = setInterval(
-      setTimeout(()=>{
+    const timerID = setTimeout(()=>{
             setTimeRemaining((timeRemaining)=>timeRemaining - 1);
       }, 1000)
-    )
       
     
     // const timerID = setInterval(() => {
     //   setTime(setTimeRemaining(timeRemaining - 1));
     // }, 1000);
 
-    return function cleanup(){
-      clearTimeout(()=>timerID);
-    };
+    return ()=>clearTimeout(timerID);
+
   })
 
   
